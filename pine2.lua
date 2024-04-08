@@ -921,7 +921,9 @@ task.spawn(function()
 	while window.ScreenGui.Parent do
 		rs.RenderStepped:Wait()
 		if antiafk_enabled.Value and tick()-antiafkstate>0.2 then
-			hum.Jump()
+			local currentPosition = getMovePart().CFrame
+			local newPosition = CFrame.new(currentPosition.Position.X + 1, currentPosition.Position.Y, currentPosition.Position.Z)
+			moveTo(newPosition)
 			antiafkstate = tick()
 		end
 	end
